@@ -1,0 +1,152 @@
+<div
+  class="container flex flex-col justify-center h-400 items-center w-full my-12 relative"
+>
+  <h1 class="text-3xl font-semibold">New Job</h1>
+  <form
+    [formGroup]="jobForm"
+    (ngSubmit)="onSubmit()"
+    class="flex flex-col justify-center items-center w-10/12"
+  >
+    <div class="mb-2 flex flex-col w-4/5">
+      <label class="text-md font-semibold mb-1"
+        >Job Title: <span class="text-xs text-gray-500">*</span>
+      </label>
+      <input
+        type="text"
+        formControlName="job_title"
+        class="border-2 border-gray-300 rounded-md p-2"
+      />
+      <div class="h-4">
+        <span
+          class="text-red-500 text-xs"
+          *ngIf="
+            jobForm.get('job_title')?.errors &&
+            jobForm.get('job_title')?.touched
+          "
+          >Job Title is required</span
+        >
+      </div>
+    </div>
+    <div class="mb-2 flex flex-row w-4/5 justify-between">
+      <div class="flex flex-col w-5/12">
+        <div class="flex flex-col">
+          <label class="text-md font-semibold mb-1"
+            >Job Number:<span class="text-xs text-gray-500"> *</span></label
+          >
+          <input
+            placeholder="Enter job number as 123-ABC"
+            type="text"
+            formControlName="job_number"
+            class="border-2 border-gray-300 rounded-md p-2"
+          />
+          <div class="h-6">
+            <span
+              class="text-red-500 text-xs"
+              *ngIf="
+                jobForm.get('job_number')?.errors &&
+                jobForm.get('job_number')?.touched
+              "
+              >Job Number is required</span
+            >
+          </div>
+        </div>
+        <div class="mb-2 flex flex-col">
+          <label class="text-md font-semibold mb-1"
+            >Number of Openings:
+            <span class="text-xs text-gray-500">*</span></label
+          >
+          <input
+            type="number"
+            min="0"
+            formControlName="number_of_openings"
+            class="border-2 border-gray-300 rounded-md p-2"
+          />
+          <div class="h-6">
+            <span
+              class="text-red-500 text-xs"
+              *ngIf="jobForm.get('number_of_openings')?.errors"
+            >
+              Number of Openings is required and must be greater than 0</span
+            >
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col w-5/12">
+        <div class="flex flex-col text-md">
+          <label class="text-md font-semibold mb-1"
+            >Job Start Date: <span class="text-xs text-gray-500">*</span></label
+          >
+          <input
+            [min]="today"
+            type="date"
+            formControlName="job_start_date"
+            class="border-2 border-gray-300 rounded-md p-2"
+          />
+          <div class="h-6">
+            <span
+              class="text-red-500 text-xs"
+              *ngIf="jobForm.get('job_start_date')?.errors"
+            >
+              Job Start Date is required</span
+            >
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label class="text-md font-semibold mb-1">Job Close Date:</label>
+          <input
+            [min]="today"
+            type="date"
+            formControlName="job_close_date"
+            class="border-2 border-gray-300 rounded-md p-2"
+          />
+          <div class="h-6">
+            <span
+              class="text-red-500 text-xs"
+              *ngIf="jobForm.get('job_close_date')?.errors"
+            >
+              Job Close Date is required</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-row w-4/5 justify-between">
+      <div class="flex flex-col w-5/12">
+        <label class="text-md font-semibold mb-2">Job Notes:</label>
+        <textarea
+          formControlName="job_notes"
+          class="border-2 border-gray-300 rounded-md p-2 resize-y min-h-[2rem] lg:max-h-[12rem] md:max-h-[8rem] sm:max-h-[4rem]"
+        >
+        </textarea>
+      </div>
+      <div class="flex flex-col items-start justify-start w-5/12">
+        <div class="flex flex-row items-center justify-start my-4">
+          <label class="text-md font-semibold mr-2">Experience Required:</label>
+          <input
+            type="checkbox"
+            formControlName="experience_required"
+            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+        </div>
+        <div class="flex flex-row items-center justify-start">
+          <button
+            type="submit"
+            class="bg-blue-500 p-2 rounded text-white font-bold hover:bg-blue-600 text-sm px-4"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            class="bg-red-500 p-2 rounded ml-2 text-white font-bold text-sm hover:bg-red-600 px-4"
+            (click)="cancel()"
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <span class="text-xs text-gray-500 ml-10 absolute bottom-[-2rem] right-10"
+    >Required fields*</span
+  >
+</div>

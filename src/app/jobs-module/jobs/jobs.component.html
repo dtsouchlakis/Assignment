@@ -1,0 +1,53 @@
+<div class="flex justify-start px-12 py-12 flex-col h-full">
+  <div class="flex flex-row justify-start">
+    <a routerLink="/new">
+      <button
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 text-sm rounded"
+      >
+        Add Job
+      </button>
+    </a>
+    <h1 class="text-3xl font-semibold basis-4/5 text-center">
+      Jobs management system
+    </h1>
+  </div>
+  <div class="overflow-y-auto mt-4">
+    <table
+      class="w-full table-auto text-left text-gray-500 dark:text-gray-400 px-4"
+    >
+      <thead
+        class="text-left text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th class="px-2 py-3">Job Number</th>
+          <th class="px-2 py-3">Job Title</th>
+          <th class="px-2 py-3">Job Start Date</th>
+          <th class="px-2 py-3">Job Close Date</th>
+          <th class="px-2 py-3">Experience Required</th>
+          <th class="px-2 py-3">Number of Openings</th>
+          <th class="px-2 py-3">Job Notes</th>
+          <th class="px-2 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="min-h-100" *ngFor="let job of jobs">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-2 py-4">{{ job.job_number }}</td>
+          <td class="px-2 py-4">{{ job.job_title }}</td>
+          <td class="px-2 py-4">{{ job.job_start_date }}</td>
+          <td class="px-2 py-4">{{ job.job_close_date }}</td>
+          <td class="px-2 py-4">{{ job.experience_required }}</td>
+          <td class="px-2 py-4">{{ job.number_of_openings }}</td>
+          <td class="px-2 py-4">{{ job.job_notes }}</td>
+          <td class="px-2 py-4">
+            <button
+              (click)="onEdit(job)"
+              class="border-2 border-gray-300 rounded-md px-2 py-1 hover:bg-gray-300 hover:text-white"
+            >
+              Edit
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
